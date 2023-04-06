@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DATABASE_URL).then(()=>app.emit('ok')).catch(erro => console.log(erro));
 app.use(session({
-    secret:"12345",
+    secret:process.env.CSRF_SECRET,
     store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
     resave:false,
     saveUninitialized:false,
